@@ -1,0 +1,290 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section>
+					<h1>Unbelieveable Encryption Technology</h1>
+				</section>
+
+				<section>
+					<h3>The Plan</h3>
+
+					<ol>
+						<li>
+							Introduce a very bad encryption algorithm as a toy
+						</li>
+
+						<li>
+							Show an interesting property of our toy algorithm
+						</li>
+
+						<li>
+							Talk about a real encryption algorithm and a much cooler property it has
+						</li>
+					</ol>
+				</section>
+
+				<section>
+					<h3>The Toy Example</h3>
+
+					<p>
+						Disclaimer
+					</p>
+				</section>
+
+				<section>
+					<h3>The Toy Example</h3>
+
+					<p>
+						We will just be encrypting numbers between 0 and 32 including 0 and 32.
+					</p>
+				</section>
+
+				<section>
+					<h3>The Toy Example</h3>
+
+					<p>
+						That is - the integers mod 33
+					</p>
+				</section>
+
+				<section>
+					<h3>The Toy Example</h3>
+
+					<p>
+						It turns out that if you give me an integer called t 
+					</p>
+
+					<p>
+						\[\begin{aligned}
+							t^{21} = t \text{ mod 33}
+						\end{aligned} \]
+					</p>
+				</section>
+
+				<section>
+					<h3>The Toy Example</h3>
+
+					<p>
+						It turns out that if you give me an integer called t 
+					</p>
+
+					<p>
+						\[\begin{aligned}
+							t^{3 * 7} = t \text{ mod 33}
+						\end{aligned} \]
+					</p>
+				</section>
+
+				<section>
+					<h3>The Toy Example</h3>
+
+					<p>
+						It turns out that if you give me an integer called t 
+					</p>
+
+					<p>
+						\[\begin{aligned}
+							(t^{3})^{7} = t \text{ mod 33}
+						\end{aligned} \]
+					</p>
+				</section>
+
+				<section>
+					<h3>The Toy Example</h3>
+
+					<p>
+						To encrypt: raise to the third power
+					</p>
+
+					<p>
+						To decrypt: raise to the seventh power
+					</p>
+				</section>
+
+				<section>
+					<h3>The Toy Example</h3>
+
+					<p>
+						Encrypt: \[\begin{aligned}
+						5^{3} = 125 = 26 \text{ mod 33}
+					\end{aligned} \] 
+					</p>
+				</section>
+				
+				<section>
+					<h3>The Toy Example</h3>
+
+					<p>
+						Encrypt: \[\begin{aligned}
+						26^{7} = 8031810176 = 5 \text{ mod 33}
+					\end{aligned} \] 
+					</p>
+				</section>
+
+				<section>
+					<h3>The Toy Example</h3>
+
+					<p>
+						This is RSA but with numbers too small to be secure
+					</p>
+				</section>
+
+				<section>
+					<h3>Interesting Property</h3>
+
+					<p>
+						Let's let our encryption function be called f
+					</p>
+
+					<p>
+						\[\begin{aligned}
+						f(x) = x^{3}
+						\end{aligned} \]
+					</p>
+				</section>
+
+				<section>
+					<h3>Interesting Property</h3>
+
+					<p>
+						All we have done here is multiply, so we can do this
+					</p>
+
+					<p>
+						\[\begin{aligned}
+						f(a * b) = (a * b)^{3}
+						\end{aligned} \]
+					</p>
+				</section>
+
+				<section>
+					<h3>Interesting Property</h3>
+
+					<p>
+						All we have done here is multiply, so we can do this
+					</p>
+
+					<p>
+						\[\begin{aligned}
+						f(a * b) = a^{3} * b^{3}
+						\end{aligned} \]
+					</p>
+				</section>
+
+				<section>
+					<h3>Interesting Property</h3>
+
+					<p>
+						All we have done here is multiply, so we can do this
+					</p>
+
+					<p>
+						\[\begin{aligned}
+						f(a * b) = f(a) * f(b)
+						\end{aligned} \]
+					</p>
+				</section>
+
+				<section>
+					<h3>Interesting Property</h3>
+
+					<p>
+						We call functions with this property homomorphic over <em>multiplication</em>
+					</p>
+
+					<p>
+						\[\begin{aligned}
+						f(a * b) = f(a) * f(b)
+						\end{aligned} \]
+					</p>
+				</section>
+
+				<section>
+					<h3>Interesting Property</h3>
+
+					<p>
+						So what?
+					</p>
+
+					<p>
+						\[\begin{aligned}
+						f(a * b) = f(a) * f(b)
+						\end{aligned} \]
+					</p>
+				</section>
+
+				<section>
+					<h3>Interesting Property</h3>
+
+					<p>
+						Encrypted multiplication as a service!
+					</p>
+
+					<p>
+						\[\begin{aligned}
+						f(a * b) = f(a) * f(b)
+						\end{aligned} \]
+					</p>
+				</section>
+
+				<section>
+					<h3>Interesting Property</h3>
+
+					<p>
+						Can we find encrpytion that's homomorphic over other operations?
+					</p>
+				</section>
+
+				<section>
+					<h3>Success!</h3>
+
+					<p>
+						In 2009 Craig Gentry invented a <em>fully</em> homomorphic encryption scheme.
+					</p>
+				</section>
+
+				<section>
+					<h3>Success!</h3>
+
+					<p>
+						This means that <em>arbitrary</em> computations can be done on encrypted data.
+					</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]
+			});
+		</script>
+	</body>
+</html>
